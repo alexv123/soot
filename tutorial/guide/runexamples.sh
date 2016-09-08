@@ -1,4 +1,3 @@
-#!/usr/local/bin/bash
 
 
 if [ $# != 0 ]

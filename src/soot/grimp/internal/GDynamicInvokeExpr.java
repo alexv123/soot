@@ -127,7 +127,11 @@ public class GDynamicInvokeExpr extends AbstractInvokeExpr implements DynamicInv
 
         return l;
     }
-
+	 public String featuresToString()
+	    {
+	        return this.toString();
+	    }
+	    
 	   public String toString()
 	    {
 	        StringBuffer buffer = new StringBuffer();

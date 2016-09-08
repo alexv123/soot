@@ -94,5 +94,24 @@ public class JIdentityStmt extends AbstractDefinitionStmt implements
 		u.addAllTagsOf(this);
 		out.add(u);
 	}
+	
+	
+	public String featuresToString() {
 
+		if (this.containsInvokeExpr()) {
+			return ((InvokeExpr) rightBox.getValue()).featuresToString();
+		} else if (getLeftOp() instanceof JCastExpr) {
+			return ("cast <" + ((JCastExpr) leftBox.getValue()).getCastType() + ">");
+		} else if (getRightOp() instanceof JCastExpr) {
+			return ("cast <" + ((JCastExpr) rightBox.getValue()).getCastType() + ">");
+		} else if (this.containsFieldRef()) {
+			return "assign <" + getFieldRef().getType() + ">";
+		} else if (getRightOp() instanceof Ref){
+			return "assign <" +rightBox.getValue().getType()+ ">";
+		} else if (getRightOp() instanceof JimpleLocal){
+			return "assign <" +rightBox.getValue().getType()+ ">";
+		}
+
+		return this.toString();
+	}
 }

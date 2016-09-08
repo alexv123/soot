@@ -264,7 +264,9 @@ public class SootClass extends AbstractHost implements Numberable {
 	 */
 	public SootField getFieldUnsafe(String name, Type type) {
 		checkLevel(SIGNATURES);
-		for (SootField field : fields.getElementsUnsorted()) {
+		for (Iterator<SootField> fieldIt = fields.snapshotIterator(); fieldIt
+				.hasNext();) {
+			SootField field = fieldIt.next();
 			if (field.getName().equals(name) && field.getType().equals(type))
 				return field;
 		}
@@ -293,7 +295,7 @@ public class SootClass extends AbstractHost implements Numberable {
 		checkLevel(SIGNATURES);
 		SootField foundField = null;
 
-		for (SootField field : fields.getElementsUnsorted()) {
+		for (SootField field : fields) {
 			if (field.getName().equals(name)) {
 				if (foundField == null)
 					foundField = field;
@@ -322,7 +324,7 @@ public class SootClass extends AbstractHost implements Numberable {
 	 */
 	public SootField getFieldUnsafe(String subsignature) {
 		checkLevel(SIGNATURES);
-		for (SootField field : fields.getElementsUnsorted()) {
+		for (SootField field : fields) {
 			if (field.getSubSignature().equals(subsignature))
 				return field;
 		}
@@ -334,7 +336,10 @@ public class SootClass extends AbstractHost implements Numberable {
 	 */
 	public boolean declaresField(String subsignature) {
 		checkLevel(SIGNATURES);
-		return getFieldUnsafe(subsignature) != null;
+		for (SootField field : fields)
+			if (field.getSubSignature().equals(subsignature))
+				return true;
+		return false;
 	}
 
 	/**

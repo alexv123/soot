@@ -26,7 +26,6 @@ package soot.dexpler;
 
 import static soot.dexpler.instructions.InstructionFactory.fromInstruction;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -36,7 +35,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.jf.dexlib2.analysis.ClassPath;
 import org.jf.dexlib2.dexbacked.DexBackedDexFile;
 import org.jf.dexlib2.iface.DexFile;
 import org.jf.dexlib2.iface.ExceptionHandler;
@@ -100,7 +98,6 @@ import soot.jimple.toolkits.scalar.LocalNameStandardizer;
 import soot.jimple.toolkits.scalar.NopEliminator;
 import soot.jimple.toolkits.scalar.UnreachableCodeEliminator;
 import soot.jimple.toolkits.typing.TypeAssigner;
-import soot.options.Options;
 import soot.toolkits.exceptions.TrapTightener;
 import soot.toolkits.scalar.LocalPacker;
 import soot.toolkits.scalar.LocalSplitter;
@@ -137,7 +134,6 @@ public class DexBody  {
     private RefType declaringClassType;
     
     private final DexFile dexFile;
-    private final Method method;
 
     // detect array/instructions overlapping obfuscation
     private ArrayList<PseudoInstruction> pseudoInstructionData = new ArrayList<PseudoInstruction>();
@@ -216,7 +212,6 @@ public class DexBody  {
         }
 
         this.dexFile = dexFile;
-        this.method = method;
     }
     
     /**
@@ -435,19 +430,10 @@ public class DexBody  {
         final boolean isOdex = dexFile instanceof DexBackedDexFile ?
         		((DexBackedDexFile) dexFile).isOdexFile() : false;
         
-        ClassPath cp = null;
-        if (isOdex) {
-	        String[] sootClasspath = Options.v().soot_classpath().split(File.pathSeparator);
-	        List<String> classpathList = new ArrayList<String>();
-	        for (String str : sootClasspath)
-	        	classpathList.add(str);
-	        cp = ClassPath.fromClassPath(classpathList, classpathList, dexFile, -1, false);
-        }
-
         int prevLineNumber = -1;
         for(DexlibAbstractInstruction instruction : instructions) {
         	if (isOdex && instruction instanceof OdexInstruction)
-        		((OdexInstruction) instruction).deOdex(dexFile, method, cp);
+        		((OdexInstruction) instruction).deOdex(dexFile);
             if (dangling != null) {
                 dangling.finalize(this, instruction);
                 dangling = null;

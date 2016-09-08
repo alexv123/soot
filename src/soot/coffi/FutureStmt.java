@@ -64,5 +64,7 @@ class FutureStmt extends soot.jimple.internal.AbstractStmt
     public boolean fallsThrough() {throw  new RuntimeException(); }
     public boolean branches() {throw new RuntimeException(); }
     public Object clone() {throw new RuntimeException();}
+
+
     
 }

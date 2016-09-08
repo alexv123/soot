@@ -71,6 +71,11 @@ public class JReturnVoidStmt extends AbstractStmt implements ReturnVoidStmt
 
     public boolean fallsThrough(){return false;}
     public boolean branches(){return false;}
+    
+	@Override
+	public String featuresToString() {
+		return "return";
+	}
 
 }
 

@@ -99,5 +99,9 @@ public class JRetStmt extends AbstractStmt implements RetStmt
 
     public boolean fallsThrough(){return true;}        
     public boolean branches(){return false;}
-
+	@Override
+	public String featuresToString() {
+		return "return";
+	}
+    
 }

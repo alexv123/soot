@@ -90,6 +90,10 @@ public abstract class AbstractStmt extends AbstractUnit implements Stmt, Convert
     {
 	throw new RuntimeException("getFieldRefBox() called with no FieldRef present!");
     }
+    
+    public String featuresToString(){
+    	return this.toString();
+    }
 
 }
 

@@ -78,6 +78,15 @@ public abstract class AbstractStaticInvokeExpr extends AbstractInvokeExpr implem
         this.methodRef = methodRef;
     }
 
+    public String featuresToString()
+    {
+        StringBuffer buffer = new StringBuffer();
+
+        buffer.append(Jimple.STATICINVOKE + " "+methodRef.getSignature());
+        return buffer.toString();
+    }
+    
+    
     public String toString()
     {
         StringBuffer buffer = new StringBuffer();

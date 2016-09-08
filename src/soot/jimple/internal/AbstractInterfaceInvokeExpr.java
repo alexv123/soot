@@ -72,6 +72,14 @@ public abstract class AbstractInterfaceInvokeExpr extends AbstractInstanceInvoke
 
     public abstract Object clone();
 
+    public String featuresToString()
+    {
+        StringBuffer buffer = new StringBuffer();
+
+        buffer.append(Jimple.INTERFACEINVOKE + " "+methodRef.getSignature());
+        return buffer.toString();
+    }
+    
     public String toString()
     {
         StringBuffer buffer = new StringBuffer();

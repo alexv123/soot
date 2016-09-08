@@ -71,6 +71,15 @@ public abstract class AbstractSpecialInvokeExpr extends AbstractInstanceInvokeEx
 
     public abstract Object clone();
 
+    public String featuresToString()
+    {
+        StringBuffer buffer = new StringBuffer();
+
+        buffer.append(Jimple.SPECIALINVOKE + " "+methodRef.getSignature());
+        return buffer.toString();
+    }
+    
+    
     public String toString()
     {
         StringBuffer buffer = new StringBuffer();

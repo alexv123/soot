@@ -100,23 +100,13 @@ public final class TypeManager {
             }
         }
         BitVector ret = (BitVector) typeMask.get( type );
-        if( ret == null && fh != null ) {
+        if( ret == null && fh != null )
         	// If we have a phantom class and have no type mask, we assume that
         	// it is not cast-compatible to anything
-    		SootClass curClass = ((RefType) type).getSootClass();
-        	if (type instanceof RefType && curClass.isPhantom())
+        	if (type instanceof RefType && ((RefType) type).getSootClass().isPhantom())
         		return new BitVector();
-        	else {
-        		// Scan through the hierarchy. We might have a phantom class higher up
-        		while (curClass.hasSuperclass()) {
-        			curClass = curClass.getSuperclass();
-                	if (type instanceof RefType && curClass.isPhantom())
-                		return new BitVector();
-        		}
-        		
+        	else
         		throw new RuntimeException( "Type mask not found for type "+type );
-        	}
-        }
         return ret;
     }
     final public void clearTypeMask() {

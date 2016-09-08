@@ -561,7 +561,23 @@ public class SootMethod
         Returns the Soot signature of this method.  Used to refer to methods unambiguously.
      */
     public String getSignature() {
-        return getSignature(getDeclaringClass(), getName(), getParameterTypes(), getReturnType());
+        if (declaringLibrary.equals("n/a")){
+    	return getSignature(getDeclaringClass(), getName(), getParameterTypes(), getReturnType());}
+        else {return getSignature(getDeclaringClass(), getName(), getParameterTypes(), getReturnType(), declaringLibrary);}
+    }
+    
+    
+    public static String getSignature(SootClass cl, String name, List<Type> params, Type returnType, String declaringLibrary) {
+        StringBuilder buffer = new StringBuilder();
+        buffer.append("<");
+        buffer.append(declaringLibrary);
+        buffer.append(": ");
+        buffer.append(getSubSignatureImpl(name, params, returnType));
+        buffer.append(">");
+
+        // Again, memory-usage tweak depending on JDK implementation due
+        // to Michael Pan.
+        return buffer.toString().intern();
     }
     
     public static String getSignature(SootClass cl, String name, List<Type> params, Type returnType) {
@@ -828,6 +844,7 @@ public class SootMethod
         this.number = number;
     }
     private int number = 0;
+	private String declaringLibrary = "n/a";
     public SootMethod method() { return this; }
     public Context context() { return null; }
     public SootMethodRef makeRef() {
@@ -851,5 +868,10 @@ public class SootMethod
     	} 
     	return line;
     }
+    //Set the declaring library class for this method
+	public void setLibraryMethod(String declaringLibrary) {
+		this.declaringLibrary  = declaringLibrary;
+		
+	}
    
 }

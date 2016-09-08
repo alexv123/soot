@@ -27,6 +27,7 @@
 package soot;
 
 
+import soot.jimple.InvokeExpr;
 import soot.tagkit.*;
 import soot.util.*;
 import java.util.*;
@@ -81,4 +82,6 @@ public interface Unit extends Switchable, Host, Serializable, Context
      * @see soot.shimple.Shimple#redirectPointers(Unit, Unit)
      **/
     public void redirectJumpsToThisTo(Unit newLocation);
+
+
 }

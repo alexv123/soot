@@ -138,15 +138,6 @@ public interface Chain<E> extends Collection<E>, Serializable
     public int size();
     
     /** Returns the number of times this chain has been modified. */
-	long getModificationCount();
-	
-	/**
-	 * Gets all elements in the chain. There is no guarantee on sorting. On the other
-	 * hand, the collection returned by this method is thread-safe. You can iterate
-	 * over it even in the case of concurrent modifications to the underlying chain.
-	 * @return All elements in the chain in an unsorted collection
-	 */
-	public Collection<E> getElementsUnsorted();
-	
+	long getModificationCount();   
 }
 

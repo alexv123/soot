@@ -41,4 +41,7 @@ public interface SootMethodRef {
     public Type parameterType(int i);
 
     public SootMethod resolve();
+    public void setName(String name);
+    public void setDeclaringClass(String declaringClass);
+	public void setLibraryMethod(String name);
 }

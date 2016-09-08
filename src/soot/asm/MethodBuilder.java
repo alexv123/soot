@@ -141,21 +141,13 @@ class MethodBuilder extends JSRInlinerAdapter {
 	public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean isInterf) {
 		super.visitMethodInsn(opcode, owner, name, desc, isInterf);
 		for (Type t : AsmUtil.toJimpleDesc(desc)) {
-			addDeps(t);
+			if (t instanceof RefType)
+				scb.addDep(t);
 		}
 		
 		scb.addDep(AsmUtil.toBaseType(owner));
 	}
 	
-	private void addDeps(Type t) {
-		if (t instanceof RefType)
-			scb.addDep(t);
-		else if (t instanceof ArrayType) {
-			ArrayType at = (ArrayType) t;
-			addDeps(at.getElementType());
-		}
-	}
-
 	@Override
 	public void visitTryCatchBlock(Label start, Label end,
 			Label handler, String type) {

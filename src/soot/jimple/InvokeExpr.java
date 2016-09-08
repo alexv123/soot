@@ -44,4 +44,5 @@ public interface InvokeExpr extends Expr
     public void setArg(int index, Value arg);
     public ValueBox getArgBox(int index);
     public Type getType();
+    public String featuresToString();
 }

@@ -46,5 +46,9 @@ public interface Stmt extends Unit
     public boolean containsFieldRef();
     public FieldRef getFieldRef();
     public ValueBox getFieldRefBox();
+    
+    public String featuresToString();
+    	
+    
 }
 

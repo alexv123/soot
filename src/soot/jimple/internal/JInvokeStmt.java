@@ -118,4 +118,9 @@ public class JInvokeStmt extends AbstractStmt implements InvokeStmt
     public boolean fallsThrough() {return true;}
     public boolean branches() {return false;}
 
+	@Override
+	public String featuresToString() {
+		return ((InvokeExpr) invokeExprBox.getValue()).featuresToString();
+	}
+
 }

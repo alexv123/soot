@@ -83,6 +83,9 @@ public class JReturnStmt extends AbstractOpStmt implements ReturnStmt
     public boolean fallsThrough(){return false;}        
     public boolean branches(){return false;}
 
-
+	@Override
+	public String featuresToString() {
+		return "return";
+	}
 }
 

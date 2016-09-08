@@ -225,4 +225,10 @@ public class DVariableDeclarationStmt extends AbstractUnit implements Stmt {
 				"getFieldRefBox() called with no FieldRef present!");
 	}
 
+	@Override
+	public String featuresToString() {
+		// TODO Auto-generated method stub
+		return this.toString();
+	}
+
 }

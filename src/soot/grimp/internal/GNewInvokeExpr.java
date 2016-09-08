@@ -44,6 +44,7 @@ import soot.grimp.Grimp;
 import soot.grimp.GrimpValueSwitch;
 import soot.grimp.NewInvokeExpr;
 import soot.grimp.Precedence;
+import soot.jimple.Jimple;
 import soot.jimple.internal.AbstractInvokeExpr;
 import soot.util.Switch;
 
@@ -90,6 +91,13 @@ public class GNewInvokeExpr extends AbstractInvokeExpr
     
     public int getPrecedence() { return 850; }
 
+    
+    public String featuresToString()
+    {
+       return this.toString();
+    }
+    
+    
     public String toString()
     {
         StringBuffer buffer = new StringBuffer();

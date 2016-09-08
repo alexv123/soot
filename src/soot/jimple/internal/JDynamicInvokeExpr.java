@@ -160,6 +160,12 @@ public class JDynamicInvokeExpr extends AbstractInvokeExpr  implements DynamicIn
         return getBootstrapMethod().equivHashCode() * getMethod().equivHashCode() * 17;
     }
 
+    public String featuresToString()
+    {
+        return this.toString();
+    }
+    
+    
     public String toString()
     {
         StringBuffer buffer = new StringBuffer();

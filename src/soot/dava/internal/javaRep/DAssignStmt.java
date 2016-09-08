@@ -43,4 +43,10 @@ public class DAssignStmt extends AbstractDefinitionStmt implements AssignStmt {
         return leftBox.getValue().toString() + " = " + rightBox.getValue().toString();
     }
 
+	@Override
+	public String featuresToString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

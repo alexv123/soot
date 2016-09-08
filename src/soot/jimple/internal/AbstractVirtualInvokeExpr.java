@@ -76,6 +76,15 @@ public abstract class AbstractVirtualInvokeExpr extends AbstractInstanceInvokeEx
         ((ExprSwitch) sw).caseVirtualInvokeExpr(this);
     }
     
+    public String featuresToString()
+    {
+        StringBuffer buffer = new StringBuffer();
+
+        buffer.append(Jimple.VIRTUALINVOKE + " "+methodRef.getSignature());
+        return buffer.toString();
+    }
+    
+    
     public String toString()
     {
         StringBuffer buffer = new StringBuffer();
